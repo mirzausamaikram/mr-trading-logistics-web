@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MR Trading & Logistics Ltd — From Here to Anywhere</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:'Poppins',sans-serif; color:#1a1a2e; background:#fff; overflow-x:hidden; }
+    a { text-decoration:none; color:inherit; }
+    img { max-width:100%; }
+    ul { list-style:none; }
+    :root {
+      --primary:#0a3d62; --secondary:#e74c3c; --accent:#f39c12;
+      --light:#f4f6f9; --dark:#1a1a2e; --text:#555; --white:#fff;
+      --gradient:linear-gradient(135deg,#0a3d62 0%,#1a6fa8 100%);
+      --shadow:0 10px 40px rgba(0,0,0,0.12); --radius:12px;
+    }
+    nav {
+      position:fixed; top:0; left:0; width:100%; z-index:1000;
+      background:rgba(10,61,98,0.97); backdrop-filter:blur(10px);
+      padding:0 5%; display:flex; align-items:center; justify-content:space-between;
+      height:70px; box-shadow:0 2px 20px rgba(0,0,0,0.3); transition:all 0.3s;
+    }
+    .nav-logo { display:flex; align-items:center; gap:12px; }
+    .nav-logo .logo-icon {
+      width:42px; height:42px; background:var(--secondary); border-radius:8px;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.2rem; color:#fff; font-weight:800;
+    }
+    .nav-logo .logo-text { color:#fff; }
+    .nav-logo .logo-text span:first-child { display:block; font-size:1rem; font-weight:700; letter-spacing:1px; }
+    .nav-logo .logo-text span:last-child { font-size:0.65rem; color:#a0c4e8; letter-spacing:2px; text-transform:uppercase; }
+    .nav-logo-img { width:42px; height:42px; object-fit:contain; border-radius:12px; }
+    .nav-tagline { font-size:0.75rem; color:#cde; letter-spacing:0.5px; margin-top:2px; display:block; }
+    .hero-logo-img { width:220px; max-width:100%; margin-bottom:1.5rem; }
+    .hero-tagline { margin:0 0 1.5rem; color:#fff; font-size:1.05rem; letter-spacing:0.8px; opacity:0.95; }
+    .footer-tagline { margin:0.8rem 0 1.25rem; color:#cde; font-size:0.95rem; line-height:1.6; }
+    .nav-links { display:flex; gap:2rem; align-items:center; }
+    .nav-links a { color:#cde; font-size:0.88rem; font-weight:500; letter-spacing:0.5px; transition:color 0.3s; position:relative; padding-bottom:4px; }
+    .nav-links a::after { content:''; position:absolute; bottom:0; left:0; width:0; height:2px; background:var(--accent); transition:width 0.3s; }
+    .nav-links a:hover { color:#fff; }
+    .nav-links a:hover::after { width:100%; }
+    .nav-links .btn-nav { background:var(--secondary); color:#fff !important; padding:8px 20px; border-radius:25px; font-weight:600; transition:all 0.3s !important; }
+    .nav-links .btn-nav:hover { background:#c0392b; transform:translateY(-2px); }
+    .nav-links .btn-nav::after { display:none; }
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+    .hamburger span { width:25px; height:2px; background:#fff; transition:all 0.3s; }
+    #home {
+      min-height:100vh; background:var(--gradient);
+      display:flex; align-items:center; position:relative; overflow:hidden; padding-top:70px;
+    }
+    .hero-bg {
+      position:absolute; inset:0;
+      background:url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=1600&q=80') center/cover no-repeat;
+      opacity:0.12;
+    }
+    .hero-shapes { position:absolute; inset:0; overflow:hidden; }
+    .hero-shapes .shape { position:absolute; border-radius:50%; opacity:0.06; background:#fff; }
+    .shape-1 { width:600px; height:600px; top:-200px; right:-200px; }
+    .shape-2 { width:300px; height:300px; bottom:-100px; left:-100px; }
+    .shape-3 { width:150px; height:150px; top:40%; left:30%; }
+    .hero-content { position:relative; z-index:2; padding:0 5%; max-width:750px; }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3);
+      color:#fff; padding:6px 16px; border-radius:25px; font-size:0.8rem;
+      font-weight:500; margin-bottom:1.5rem; backdrop-filter:blur(5px);
+    }
+    .hero-badge i { color:var(--accent); }
+    .hero-content h1 { font-size:clamp(2rem,5vw,3.5rem); font-weight:800; color:#fff; line-height:1.15; margin-bottom:1.2rem; }
+    .hero-content h1 span { color:var(--accent); }
+    .hero-content p { font-size:1.05rem; color:#b8d4ee; line-height:1.8; margin-bottom:2rem; max-width:580px; }
+    .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; }
+    .btn-primary {
+      background:var(--secondary); color:#fff; padding:14px 32px; border-radius:30px;
+      font-weight:600; font-size:0.95rem; display:inline-flex; align-items:center; gap:8px;
+      transition:all 0.3s; box-shadow:0 5px 20px rgba(231,76,60,0.4);
+    }
+    .btn-primary:hover { background:#c0392b; transform:translateY(-3px); box-shadow:0 8px 25px rgba(231,76,60,0.5); }
+    .btn-outline {
+      border:2px solid rgba(255,255,255,0.6); color:#fff; padding:12px 30px; border-radius:30px;
+      font-weight:600; font-size:0.95rem; display:inline-flex; align-items:center; gap:8px; transition:all 0.3s;
+    }
+    .btn-outline:hover { background:rgba(255,255,255,0.15); transform:translateY(-3px); }
+    .hero-stats { position:absolute; bottom:40px; right:5%; z-index:2; display:flex; gap:2rem; }
+    .stat-card {
+      background:rgba(255,255,255,0.1); backdrop-filter:blur(10px);
+      border:1px solid rgba(255,255,255,0.2); border-radius:var(--radius);
+      padding:16px 24px; text-align:center; color:#fff;
+    }
+    .stat-card .num { font-size:1.8rem; font-weight:800; color:var(--accent); }
+    .stat-card .label { font-size:0.75rem; color:#a0c4e8; margin-top:2px; }
+    section { padding:90px 5%; }
+    .section-tag {
+      display:inline-flex; align-items:center; gap:8px; color:var(--secondary);
+      font-size:0.8rem; font-weight:600; text-transform:uppercase; letter-spacing:2px; margin-bottom:0.8rem;
+    }
+    .section-tag::before { content:''; width:30px; height:2px; background:var(--secondary); }
+    .section-title { font-size:clamp(1.6rem,3.5vw,2.4rem); font-weight:800; color:var(--primary); margin-bottom:1rem; line-height:1.2; }
+    .section-title span { color:var(--secondary); }
+    .section-sub { color:var(--text); font-size:1rem; line-height:1.8; max-width:600px; }
+    .section-header { margin-bottom:3.5rem; }
+    .section-header.center { text-align:center; }
+    .section-header.center .section-tag { justify-content:center; }
+    .section-header.center .section-tag::before { display:none; }
+    .section-header.center .section-sub { margin:0 auto; }
+    #about { background:var(--light); }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+    .about-img-placeholder {
+      width:100%; height:420px; border-radius:var(--radius);
+      background:var(--gradient); display:flex; flex-direction:column;
+      align-items:center; justify-content:center; color:#fff; gap:1rem; box-shadow:var(--shadow);
+    }
+    .about-img-placeholder i { font-size:5rem; opacity:0.7; }
+    .about-img-placeholder span { font-size:1.2rem; font-weight:600; opacity:0.8; }
+    .about-badge {
+      position:absolute; bottom:-20px; right:-20px;
+      background:var(--secondary); color:#fff; padding:20px 24px;
+      border-radius:var(--radius); text-align:center; box-shadow:var(--shadow);
+    }
+    .about-badge .big { font-size:2rem; font-weight:800; display:block; }
+    .about-badge .sm { font-size:0.75rem; font-weight:500; }
+    .about-img-wrap { position:relative; }
+    .about-features { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-top:2rem; }
+    .feat-item { display:flex; align-items:center; gap:10px; font-size:0.9rem; color:var(--text); }
+    .feat-item i { color:var(--secondary); font-size:1rem; }
+    #services { background:#fff; }
+    .services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2rem; }
+    .service-card {
+      background:#fff; border-radius:var(--radius); padding:2rem;
+      box-shadow:0 5px 25px rgba(0,0,0,0.07); border:1px solid #eef0f5;
+      transition:all 0.3s; position:relative; overflow:hidden;
+    }
+    .service-card::before { content:''; position:absolute; top:0; left:0; width:4px; height:0; background:var(--secondary); transition:height 0.3s; }
+    .service-card:hover { transform:translateY(-8px); box-shadow:var(--shadow); }
+    .service-card:hover::before { height:100%; }
+    .service-icon { width:60px; height:60px; border-radius:12px; background:var(--light); display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin-bottom:1.2rem; transition:all 0.3s; }
+    .service-card:hover .service-icon { background:var(--secondary); color:#fff; }
+    .service-card h3 { font-size:1.05rem; font-weight:700; color:var(--primary); margin-bottom:0.6rem; }
+    .service-card p { font-size:0.88rem; color:var(--text); line-height:1.7; }
+    #easymart { background:var(--light); }
+    .easymart-grid { display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center; }
+    .badge-row { display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:2rem; }
+    .badge { background:#fff; border:1px solid #e0e6f0; border-radius:25px; padding:6px 16px; font-size:0.8rem; font-weight:600; color:var(--primary); display:flex; align-items:center; gap:6px; }
+    .badge i { color:var(--accent); }
+    .easymart-details { display:flex; flex-direction:column; gap:1rem; margin-top:2rem; }
+    .detail-row { display:flex; align-items:flex-start; gap:14px; background:#fff; padding:14px 18px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.05); }
+    .detail-row i { color:var(--secondary); font-size:1.1rem; margin-top:2px; min-width:20px; }
+    .detail-row .d-label { font-size:0.75rem; color:#999; font-weight:500; }
+    .detail-row .d-value { font-size:0.92rem; color:var(--dark); font-weight:600; }
+    .easymart-visual { background:var(--gradient); border-radius:var(--radius); padding:3rem; color:#fff; position:relative; overflow:hidden; box-shadow:var(--shadow); }
+    .easymart-visual .em-logo { font-size:3rem; font-weight:800; margin-bottom:0.5rem; }
+    .easymart-visual .em-sub { font-size:0.9rem; color:#a0c4e8; margin-bottom:2rem; }
+    .em-rating { display:flex; align-items:center; gap:10px; margin-bottom:2rem; }
+    .stars { color:var(--accent); font-size:1.2rem; }
+    .em-rating span { font-size:0.9rem; color:#cde; }
+    .em-products { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .em-product { background:rgba(255,255,255,0.1); border-radius:10px; padding:14px; text-align:center; font-size:0.85rem; font-weight:500; border:1px solid rgba(255,255,255,0.15); }
+    .em-product i { display:block; font-size:1.5rem; margin-bottom:6px; color:var(--accent); }
+    .easymart-visual .deco { position:absolute; bottom:-40px; right:-40px; width:200px; height:200px; border-radius:50%; background:rgba(255,255,255,0.05); }
+    #why { background:#fff; }
+    .why-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:2rem; }
+    .why-card { text-align:center; padding:2.5rem 1.5rem; border-radius:var(--radius); border:1px solid #eef0f5; transition:all 0.3s; }
+    .why-card:hover { background:var(--primary); color:#fff; transform:translateY(-8px); box-shadow:var(--shadow); }
+    .why-icon { width:70px; height:70px; border-radius:50%; background:var(--light); display:flex; align-items:center; justify-content:center; font-size:1.8rem; color:var(--primary); margin:0 auto 1.2rem; transition:all 0.3s; }
+    .why-card:hover .why-icon { background:rgba(255,255,255,0.15); color:#fff; }
+    .why-card h3 { font-size:1rem; font-weight:700; margin-bottom:0.5rem; }
+    .why-card p { font-size:0.85rem; color:var(--text); line-height:1.7; transition:color 0.3s; }
+    .why-card:hover p { color:#cde; }
+    #contact { background:var(--gradient); color:#fff; }
+    .contact-grid { display:grid; grid-template-columns:1fr 1.4fr; gap:5rem; align-items:start; }
+    .contact-info .section-title { color:#fff; }
+    .contact-info .section-sub { color:#a0c4e8; }
+    .contact-items { display:flex; flex-direction:column; gap:1.5rem; margin-top:2rem; }
+    .c-item { display:flex; align-items:flex-start; gap:16px; }
+    .c-icon { width:48px; height:48px; border-radius:10px; background:rgba(255,255,255,0.12); display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+    .c-item .c-label { font-size:0.75rem; color:#7fb3d3; font-weight:500; margin-bottom:3px; }
+    .c-item .c-value { font-size:0.95rem; font-weight:600; }
+    .contact-form { background:#fff; border-radius:var(--radius); padding:2.5rem; box-shadow:0 20px 60px rgba(0,0,0,0.2); }
+    .contact-form h3 { font-size:1.3rem; font-weight:700; color:var(--primary); margin-bottom:1.5rem; }
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .form-group { margin-bottom:1.2rem; }
+    .form-group label { display:block; font-size:0.82rem; font-weight:600; color:var(--primary); margin-bottom:6px; }
+    .form-group input, .form-group textarea, .form-group select { width:100%; padding:12px 16px; border:1.5px solid #e0e6f0; border-radius:8px; font-family:'Poppins',sans-serif; font-size:0.88rem; color:var(--dark); transition:border 0.3s; outline:none; background:#fafbfc; }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color:var(--primary); background:#fff; }
+    .form-group textarea { resize:vertical; min-height:100px; }
+    .btn-submit { width:100%; background:var(--secondary); color:#fff; border:none; padding:14px; border-radius:30px; font-family:'Poppins',sans-serif; font-size:1rem; font-weight:600; cursor:pointer; transition:all 0.3s; display:flex; align-items:center; justify-content:center; gap:8px; }
+    .btn-submit:hover { background:#c0392b; transform:translateY(-2px); }
+    footer { background:#0d1b2a; color:#8899aa; padding:3rem 5% 1.5rem; }
+    .footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:3rem; margin-bottom:2.5rem; }
+    .footer-brand p { margin-top:1rem; font-size:0.85rem; line-height:1.8; }
+    .footer-col h4 { color:#fff; font-size:0.9rem; font-weight:700; margin-bottom:1rem; }
+    .footer-col ul li { margin-bottom:0.6rem; }
+    .footer-col ul li a { font-size:0.85rem; color:#8899aa; transition:color 0.3s; }
+    .footer-col ul li a:hover { color:var(--accent); }
+    .footer-bottom { border-top:1px solid #1e2d3d; padding-top:1.5rem; display:flex; justify-content:space-between; align-items:center; font-size:0.8rem; flex-wrap:wrap; gap:1rem; }
+    .footer-bottom span { color:#556677; }
+    .social-links { display:flex; gap:0.8rem; }
+    .social-links a { width:36px; height:36px; border-radius:8px; background:#1e2d3d; display:flex; align-items:center; justify-content:center; color:#8899aa; font-size:0.9rem; transition:all 0.3s; }
+    .social-links a:hover { background:var(--secondary); color:#fff; }
+    #scrollTop { position:fixed; bottom:30px; right:30px; z-index:999; width:44px; height:44px; background:var(--secondary); color:#fff; border:none; border-radius:50%; cursor:pointer; font-size:1.1rem; display:none; align-items:center; justify-content:center; box-shadow:0 5px 20px rgba(231,76,60,0.4); transition:all 0.3s; }
+    #scrollTop:hover { background:#c0392b; transform:translateY(-3px); }
+    .toast { position:fixed; bottom:30px; left:50%; transform:translateX(-50%) translateY(100px); background:var(--primary); color:#fff; padding:14px 28px; border-radius:30px; font-size:0.9rem; font-weight:500; z-index:9999; transition:transform 0.4s ease; box-shadow:var(--shadow); display:flex; align-items:center; gap:10px; }
+    .toast.show { transform:translateX(-50%) translateY(0); }
+    .toast i { color:var(--accent); }
+    @media(max-width:768px) {
+      .hamburger { display:flex; }
+      .nav-links { position:fixed; top:70px; left:0; width:100%; background:var(--primary); flex-direction:column; padding:2rem; gap:1.5rem; transform:translateY(-120%); transition:transform 0.4s; z-index:999; }
+      .nav-links.open { transform:translateY(0); }
+      .about-grid, .easymart-grid, .contact-grid { grid-template-columns:1fr; gap:3rem; }
+      .hero-stats { position:relative; bottom:auto; right:auto; flex-wrap:wrap; justify-content:center; padding:0 5%; margin-top:3rem; }
+      .hero-content { padding:3rem 5%; }
+      .form-row { grid-template-columns:1fr; }
+      .footer-grid { grid-template-columns:1fr 1fr; }
+      .about-badge { bottom:-10px; right:10px; }
+    }
+    .fade-in { opacity:0; transform:translateY(30px); transition:all 0.7s ease; }
+    .fade-in.visible { opacity:1; transform:translateY(0); }
+  </style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-logo">
+    <img src="images/Favicon_logo.png" alt="MR Logo" class="nav-logo-img" />
+    <div class="logo-text">
+      <span>MR Trading & Logistics</span>
+      <span class="nav-tagline">From Here to Anywhere</span>
+    </div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#easymart">EasyMart</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact" class="btn-nav">Contact Us</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+  <div class="hero-content fade-in">
+    <div class="hero-badge"><i class="fas fa-globe-asia"></i> Hong Kong Based · Global Reach</div>
+    <img src="images/Logowithtagline.png" alt="MR Trading & Logistics - From Here to Anywhere" class="hero-logo-img" />
+    <div class="hero-tagline">From Here to Anywhere</div>
+    <h1>Reliable <span>Trading &</span><br/>Logistics Solutions<br/>in Hong Kong</h1>
+    <p>MR Trading & Logistics Ltd delivers end-to-end supply chain, freight forwarding, and trading services across Asia and beyond — with precision, speed, and trust.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary"><i class="fas fa-rocket"></i> Our Services</a>
+      <a href="#contact" class="btn-outline"><i class="fas fa-envelope"></i> Get a Quote</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-card fade-in"><div class="num">5.0★</div><div class="label">Google Rating</div></div>
+    <div class="stat-card fade-in"><div class="num">1</div><div class="label">Branch · EasyMart</div></div>
+    <div class="stat-card fade-in"><div class="num">HK</div><div class="label">Hong Kong Based</div></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-grid">
+    <div class="about-img-wrap fade-in">
+      <div class="about-img-placeholder">
+        <i class="fas fa-ship"></i>
+        <span>MR Trading & Logistics Ltd</span>
+      </div>
+      <div class="about-badge">
+        <span class="big">100%</span>
+        <span class="sm">Client<br/>Satisfaction</span>
+      </div>
+    </div>
+    <div class="fade-in">
+      <div class="section-header">
+        <div class="section-tag">About Us</div>
+        <h2 class="section-title">Your Trusted Partner in <span>Trade & Logistics</span></h2>
+        <p class="section-sub">MR Trading & Logistics Ltd is a Hong Kong-based company delivering comprehensive trading and logistics solutions across Southeast Asia and beyond.</p>
+      </div>
+      <div class="about-features">
+        <div class="feat-item"><i class="fas fa-check-circle"></i> Freight Forwarding</div>
+        <div class="feat-item"><i class="fas fa-check-circle"></i> Supply Chain Management</div>
+        <div class="feat-item"><i class="fas fa-check-circle"></i> Import & Export</div>
+        <div class="feat-item"><i class="fas fa-check-circle"></i> Customs Brokerage</div>
+        <div class="feat-item"><i class="fas fa-check-circle"></i> Warehousing</div>
+        <div class="feat-item"><i class="fas fa-check-circle"></i> Retail Distribution</div>
+      </div>
+      <br/>
+      <a href="#contact" class="btn-primary" style="display:inline-flex;margin-top:1rem;">
+        <i class="fas fa-handshake"></i> Partner With Us
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="section-header center fade-in">
+    <div class="section-tag">What We Offer</div>
+    <h2 class="section-title">Our Core <span>Services</span></h2>
+    <p class="section-sub">From global freight to last-mile delivery, we offer a full spectrum of logistics and trading services.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-in">
+      <div class="service-icon"><i class="fas fa-ship" style="color:var(--primary)"></i></div>
+      <h3>Sea Freight</h3>
+      <p>FCL and LCL shipping solutions across major global ports with competitive rates and reliable transit times.</p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon"><i class="fas fa-plane" style="color:var(--primary)"></i></div>
+      <h3>Air Freight</h3>
+      <p>Time-sensitive cargo handled with care. Express and standard air freight connecting Hong Kong worldwide.</p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon"><i class="fas fa-truck" style="color:var(--primary)"></i></div>
+      <h3>Land Transport</h3>
+      <p>Reliable road freight and last-mile delivery within Hong Kong and cross-border to mainland China.</p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon"><i class="fas fa-warehouse" style="color:var(--primary)"></i></div>
+      <h3>Warehousing</h3>
+      <p>Secure, modern warehousing with inventory management, pick & pack, and distribution services.</p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon"><i class="fas fa-file-alt" style="color:var(--primary)"></i></div>
+      <h3>Customs Brokerage</h3>
+      <p>Expert import/export documentation, customs clearance, and regulatory compliance handling.</p>
+    </div>
+    <div class="service-card fade-in">
+      <div class="service-icon"><i class="fas fa-exchange-alt" style="color:var(--primary)"></i></div>
+      <h3>Trading & Sourcing</h3>
+      <p>Procurement, product sourcing, and trading connecting buyers and suppliers across Southeast Asia.</p>
+    </div>
+  </div>
+</section>
+
+<section id="easymart">
+  <div class="easymart-grid">
+    <div class="easymart-info fade-in">
+      <div class="section-header">
+        <div class="section-tag">Our Branch</div>
+        <h2 class="section-title">Welcome to <span>EasyMart</span></h2>
+        <p class="section-sub">EasyMart is our South & Southeast Asian grocery store proudly serving the Lei Muk Shue Estate community with authentic products from across Asia.</p>
+      </div>
+      <div class="badge-row">
+        <div class="badge"><i class="fas fa-star"></i> 5.0 Google Rating</div>
+        <div class="badge"><i class="fas fa-store"></i> Grocery Store</div>
+        <div class="badge"><i class="fas fa-leaf"></i> South Asian Products</div>
+      </div>
+      <div class="easymart-details">
+        <div class="detail-row">
+          <i class="fas fa-map-marker-alt"></i>
+          <div><div class="d-label">Address</div><div class="d-value">Lei Muk Shue Estate, Block 4, Shop No. 4, Hong Kong</div></div>
+        </div>
+        <div class="detail-row">
+          <i class="fas fa-phone"></i>
+          <div><div class="d-label">Phone</div><div class="d-value">9860 4611</div></div>
+        </div>
+        <div class="detail-row">
+          <i class="fas fa-clock"></i>
+          <div><div class="d-label">Opening Hours</div><div class="d-value">Open Daily · Closes 9:00 PM</div></div>
+        </div>
+        <div class="detail-row">
+          <i class="fas fa-tag"></i>
+          <div><div class="d-label">Specialty</div><div class="d-value">South Asian's Grocery Store</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="easymart-visual fade-in">
+      <div class="em-logo">EasyMart</div>
+      <div class="em-sub">South Asian's Grocery Store · Hong Kong</div>
+      <div class="em-rating">
+        <div class="stars">★★★★★</div>
+        <span>5.0 · 4 Google Reviews</span>
+      </div>
+      <div class="em-products">
+        <div class="em-product"><i class="fas fa-pepper-hot"></i>Spices & Masalas</div>
+        <div class="em-product"><i class="fas fa-seedling"></i>Fresh Produce</div>
+        <div class="em-product"><i class="fas fa-bread-slice"></i>Breads & Grains</div>
+        <div class="em-product"><i class="fas fa-fish"></i>Seafood & Meat</div>
+        <div class="em-product"><i class="fas fa-cookie"></i>Snacks & Sweets</div>
+        <div class="em-product"><i class="fas fa-bottle-water"></i>Beverages</div>
+      </div>
+      <div class="deco"></div>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="section-header center fade-in">
+    <div class="section-tag">Why Choose Us</div>
+    <h2 class="section-title">The MR Trading <span>Difference</span></h2>
+    <p class="section-sub">We combine local expertise with a global mindset to deliver solutions that drive your business forward.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card fade-in">
+      <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
+      <h3>Trusted & Reliable</h3>
+      <p>Years of experience in Hong Kong's trading landscape with a proven track record of on-time delivery.</p>
+    </div>
+    <div class="why-card fade-in">
+      <div class="why-icon"><i class="fas fa-globe"></i></div>
+      <h3>Global Network</h3>
+      <p>Strong partnerships across Southeast Asia, South Asia, and major global trade corridors.</p>
+    </div>
+    <div class="why-card fade-in">
+      <div class="why-icon"><i class="fas fa-headset"></i></div>
+      <h3>24/7 Support</h3>
+      <p>Our dedicated team is always available to assist with queries, updates, and urgent shipments.</p>
+    </div>
+    <div class="why-card fade-in">
+      <div class="why-icon"><i class="fas fa-dollar-sign"></i></div>
+      <h3>Competitive Pricing</h3>
+      <p>Transparent, competitive rates with no hidden charges — maximizing value for every dollar spent.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-info fade-in">
+      <div class="section-tag" style="color:#a0c4e8;">Get In Touch</div>
+      <h2 class="section-title" style="color:#fff;">Let's Work <span style="color:var(--accent)">Together</span></h2>
+      <p class="section-sub">Ready to streamline your logistics or visit EasyMart? Reach out to us today.</p>
+      <div class="contact-items">
+        <div class="c-item">
+          <div class="c-icon"><i class="fas fa-building"></i></div>
+          <div><div class="c-label">Company</div><div class="c-value">MR Trading & Logistics Ltd</div></div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div><div class="c-label">Location</div><div class="c-value">Hong Kong SAR, China</div></div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon"><i class="fas fa-phone"></i></div>
+          <div><div class="c-label">EasyMart Branch</div><div class="c-value">9860 4611</div></div>
+        </div>
+        <div class="c-item">
+          <div class="c-icon"><i class="fas fa-clock"></i></div>
+          <div><div class="c-label">EasyMart Hours</div><div class="c-value">Open Daily · Until 9:00 PM</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form fade-in">
+      <h3><i class="fas fa-paper-plane" style="color:var(--secondary);margin-right:8px;"></i>Send Us a Message</h3>
+      <form id="contactForm" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group"><label>Full Name *</label><input type="text" placeholder="Your full name" required/></div>
+          <div class="form-group"><label>Email Address *</label><input type="email" placeholder="your@email.com" required/></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="+852 XXXX XXXX"/></div>
+          <div class="form-group">
+            <label>Inquiry Type</label>
+            <select>
+              <option>Logistics Services</option>
+              <option>Freight Forwarding</option>
+              <option>EasyMart / Retail</option>
+              <option>Trading & Sourcing</option>
+              <option>General Inquiry</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group"><label>Message *</label><textarea placeholder="Tell us about your requirements..." required></textarea></div>
+        <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo">
+        <div class="logo-icon" style="background:var(--secondary)">MR</div>
+        <div class="logo-text">
+          <span style="color:#fff;font-size:1rem;font-weight:700;display:block;">MR Trading & Logistics</span>
+          <span style="color:#cde;font-size:0.75rem;letter-spacing:0.5px;display:block;margin-top:4px;">From Here to Anywhere</span>
+          <span style="color:#5577aa;font-size:0.65rem;letter-spacing:2px;">Hong Kong · Est. 2020</span>
+        </div>
+      </div>
+      <p class="footer-tagline">From Here to Anywhere</p>
+      <p>A trusted Hong Kong-based trading and logistics company with a growing retail presence through our EasyMart branch.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#easymart">EasyMart</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Sea Freight</a></li>
+        <li><a href="#services">Air Freight</a></li>
+        <li><a href="#services">Land Transport</a></li>
+        <li><a href="#services">Warehousing</a></li>
+        <li><a href="#services">Customs Brokerage</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>EasyMart</h4>
+      <ul>
+        <li><a href="#easymart">Location</a></li>
+        <li><a href="#easymart">Opening Hours</a></li>
+        <li><a href="#easymart">Products</a></li>
+        <li><a href="#contact">Contact Branch</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 MR Trading & Logistics Ltd. All rights reserved.</span>
+    <div class="social-links">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-whatsapp"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </div>
+</footer>
+
+<button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fas fa-arrow-up"></i>
+</button>
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMsg"></span></div>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').style.background =
+      window.scrollY > 50 ? 'rgba(10,61,98,0.99)' : 'rgba(10,61,98,0.97)';
+    document.getElementById('scrollTop').style.display =
+      window.scrollY > 300 ? 'flex' : 'none';
+  });
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  function handleSubmit(e) {
+    e.preventDefault();
+    showToast('Message sent! We will get back to you shortly.');
+    e.target.reset();
+  }
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 4000);
+  }
+  document.title = 'MR Trading & Logistics Ltd — From Here to Anywhere';
+</script>
+</body>
+</html>
